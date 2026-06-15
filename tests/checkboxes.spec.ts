@@ -13,6 +13,7 @@ const READONLY_CHECKED = 'Accept Terms and Conditions';
 const READONLY_UNCHECKED = 'Required cookies';
 
 test.describe('validate checkboxes', () => {
+  
   test.beforeEach(async ({ page }) => {
     await page.goto('https://nagarjunreddykasu.github.io/web-automation-practice-site/');
     await page.getByRole('link', { name: 'Checkboxes' }).click();

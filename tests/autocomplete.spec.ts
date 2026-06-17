@@ -12,7 +12,7 @@ test("handling single frame", async({page})=>{
    const allOptions = page.getByRole('presentation');
    const countOfOptions = await allOptions.count();
 
-   for(let i=1;i<=countOfOptions;i++){
+   for(let i=0;i<countOfOptions;i++){
         const option = await page.getByRole('presentation').nth(i).innerText();
         if(option === optionToSelect){
             await page.getByRole('presentation').nth(i).click();

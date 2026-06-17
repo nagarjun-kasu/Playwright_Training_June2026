@@ -17,27 +17,52 @@ test.describe("Handling Iframes",()=>{
         await expect(iframe.locator("#iframeMsg")).toContainText("Button inside iframe was clicked!");
         await page.pause();
     })
-
 })
 
 test("handling single frame", async({page})=>{
     await page.goto("https://demo.automationtesting.in/Frames.html");
-    
     await page.frameLocator("#singleframe").getByRole("textbox").fill("Playwright");
-    
     await page.pause();
-
 })
 
 test("handling nested frames", async({page})=>{
     await page.goto("https://demo.automationtesting.in/Frames.html");
     await page.getByRole("link", {name:'Iframe with in an Iframe'}).click();
+
     const outerFrame = page.frameLocator("iframe[src='MultipleFrames.html']");
 
     const innerFrame = outerFrame.frameLocator("iframe[src='SingleFrame.html']");
 
     await innerFrame.getByRole('textbox').fill("Nested Frame data");
 
-    await page.pause();
+    console.log(await outerFrame.getByRole('heading').textContent());
+    console.log(await innerFrame.getByRole('heading').textContent());
 
+    await page.pause();
+})
+
+test("handling single frame without attributes", async({page})=>{
+    await page.goto("https://demo.automationtesting.in/Frames.html");
+    
+    //await page.locator("iframe").first().contentFrame().getByRole("textbox").fill("Playwright");
+
+    page.frames().filter(frame => frame.url().includes('SingleFrame.html'))[0].getByRole('textbox').fill("Playwright automation");
+
+    await page.pause();
+})
+
+test("handling nested frames without attributes", async({page})=>{
+    await page.goto("https://demo.automationtesting.in/Frames.html");
+    await page.getByRole("link", {name:'Iframe with in an Iframe'}).click();
+
+    const innerFrame = page.frames().find(frame =>{
+        return frame.url().includes("SingleFrame.html") && frame.parentFrame()?.url().includes("MultipleFrames.html");
+    })
+
+    if(!innerFrame)
+        throw new Error("Inner frame not found");
+    
+    await innerFrame.getByRole("textbox").fill("Playwright with Typescript");
+
+    await page.pause();
 })

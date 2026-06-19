@@ -73,19 +73,17 @@ test.describe("Handling Multiple windows",()=>{
                 page.getByRole("button", {name:'Download data.csv'}).click()
             ]
         )
-
         const FILES_DIR = path.join(__dirname,'../testdata');
         const downloadFilePath = path.join(FILES_DIR,'download-file.csv');
         await download.saveAs(downloadFilePath);
 
+        //verify the file is downloaded successfully
+        expect(path.resolve(downloadFilePath)).toBeTruthy();
+        //verify the downloaded file name is saved in testdata folder
+        expect(path.basename(downloadFilePath)).toBe('download-file.csv');
+
         await page.pause();
-
     })
-
-
-
-
-
 })
 
 //IQ: How to upload a file in Playwright?

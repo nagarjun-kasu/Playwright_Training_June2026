@@ -1,5 +1,7 @@
 import { expect, test, Page } from '@playwright/test'
 
+import path from "path";
+
 const APP_URL = "https://nagarjunreddykasu.github.io/web-automation-practice-site/";
 
 test.describe("Handling Multiple windows",()=>{

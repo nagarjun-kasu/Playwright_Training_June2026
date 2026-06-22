@@ -9,8 +9,9 @@ test("validate the categories", async ({page})=>{
     const countOfCategories = await allCategoriesElements.count();
 
     let actualCategories:string[] = [];
-    for(let i=1; i<=countOfCategories; i++){
-        actualCategories.push(await page.locator(".dropdown.search-category.show").locator("//div/a["+i+"]").innerText());
+    for(let i=0; i<countOfCategories; i++){
+        //actualCategories.push(await page.locator(".dropdown.search-category.show").locator("//div/a["+i+"]").innerText());
+        actualCategories.push(await page.locator(".dropdown.search-category.show").getByRole("link").nth(i).innerText());
     }
 
     let expectedCategories:string[] = ["All Categories","Desktops","Laptops","Components", "Tablets", "Software", "Phones & PDAs", "Cameras", "MP3 Players"];

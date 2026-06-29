@@ -28,7 +28,7 @@ test("validate the product in myntra", async({page})=>{
     if(!childWindow)
         throw new Error("Child window is not found");
 
-    await childWindow.getByRole("button", {name:'34'}).click();
+    await childWindow.getByRole("button", {name:'36'}).click();
     //await childWindow.getByRole("button", {name:'ADD TO BAG'}).click();
     await childWindow.getByText("ADD TO BAG", {exact:true}).click();
     await childWindow.getByText("Bag", {exact:true}).click();
@@ -39,5 +39,5 @@ test("validate the product in myntra", async({page})=>{
 
     await page.getByText("Bag", {exact:true}).click();
     await expect(page.getByText(lastProductName)).toBeVisible();
-    await page.pause();
+    //await page.pause();
 })

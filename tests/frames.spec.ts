@@ -15,14 +15,14 @@ test.describe("Handling Iframes",()=>{
         await expect(iframe.getByRole('paragraph')).toContainText("This is an embedded inline frame.");
         await iframe.getByRole('button', {name:'Click Me Inside'}).click();
         await expect(iframe.locator("#iframeMsg")).toContainText("Button inside iframe was clicked!");
-        await page.pause();
+        //await page.pause();
     })
 })
 
 test("handling single frame", async({page})=>{
     await page.goto("https://demo.automationtesting.in/Frames.html");
     await page.frameLocator("#singleframe").getByRole("textbox").fill("Playwright");
-    await page.pause();
+    //await page.pause();
 })
 
 test("handling nested frames", async({page})=>{
@@ -38,7 +38,7 @@ test("handling nested frames", async({page})=>{
     console.log(await outerFrame.getByRole('heading').textContent());
     console.log(await innerFrame.getByRole('heading').textContent());
 
-    await page.pause();
+    //await page.pause();
 })
 
 test("handling single frame without attributes", async({page})=>{
@@ -48,7 +48,7 @@ test("handling single frame without attributes", async({page})=>{
 
     page.frames().filter(frame => frame.url().includes('SingleFrame.html'))[0].getByRole('textbox').fill("Playwright automation");
 
-    await page.pause();
+    //await page.pause();
 })
 
 test("handling nested frames without attributes", async({page})=>{
@@ -64,5 +64,5 @@ test("handling nested frames without attributes", async({page})=>{
     
     await innerFrame.getByRole("textbox").fill("Playwright with Typescript");
 
-    await page.pause();
+   // await page.pause();
 })

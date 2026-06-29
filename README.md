@@ -65,3 +65,15 @@ https://jsonplaceholder.typicode.com/
 https://fakerestapi.azurewebsites.net/index.html
 
 https://gorest.co.in/ (requires token)
+
+#######################################################################
+
+Test Execution Commands:
+=========================
+npx playwright test
+npx playwright test test/visual.spec.ts
+npx playwright test --grep "@sanity"
+npx playwright test --grep "@sanity|@regression" --> To execute both sanity and regression test cases
+npx playwright test --grep-invert "@sanity" --> TO exclude sanity test cases
+
+npx playwright test --grep "@regression" --grep-invert "@bug"

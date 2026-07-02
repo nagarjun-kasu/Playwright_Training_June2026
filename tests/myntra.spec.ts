@@ -28,7 +28,8 @@ test("validate the product in myntra", async({page})=>{
     if(!childWindow)
         throw new Error("Child window is not found");
 
-    await childWindow.getByRole("button", {name:'36'}).click();
+    //await page.pause();
+    await childWindow.getByRole("button", {name:'34'}).click();
     //await childWindow.getByRole("button", {name:'ADD TO BAG'}).click();
     await childWindow.getByText("ADD TO BAG", {exact:true}).click();
     await childWindow.getByText("Bag", {exact:true}).click();

@@ -77,3 +77,21 @@ npx playwright test --grep "@sanity|@regression" --> To execute both sanity and 
 npx playwright test --grep-invert "@sanity" --> TO exclude sanity test cases
 
 npx playwright test --grep "@regression" --grep-invert "@bug"
+
+DEBUG:
+=======
+In WIndows: $env:pwdebug=1; npx playwright test tests/myntra.spec.ts
+
+In MAC: pwdebug=1 npx playwright test tests/myntra.spec.ts
+
+or use --> await page.pause();
+
+Allure Report:
+==================
+Install the following dependencies:
+
+npm install -g allure-commandline
+npm install allure-playwright --save-dev
+
+To generate the allure report:
+allure generate allure-results --clean -o allure-report

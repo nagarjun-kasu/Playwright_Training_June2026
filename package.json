@@ -4,15 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test":"npx plawright test",
-    "test:sanity":"npx playwright test --grep @sanity"
+    "test": "npx plawright test",
+    "test:sanity": "npx playwright test --grep @sanity"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@faker-js/faker": "^10.5.0",
     "@playwright/test": "^1.60.0",
-    "@types/node": "^25.9.2"
+    "@types/luxon": "^3.7.2",
+    "@types/node": "^25.9.2",
+    "allure-playwright": "^3.10.2",
+    "luxon": "^3.7.2"
   }
 }

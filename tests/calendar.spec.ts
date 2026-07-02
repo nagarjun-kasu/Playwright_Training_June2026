@@ -28,6 +28,6 @@ test("select a future date @sanity", async({page})=>{
         await page.getByRole('button', {name:'▶'}).click();
         //await page.waitForTimeout(2000);
     }
-
+    //await page.pause();
     await page.getByRole('button', {name:'31'}).click();
 })

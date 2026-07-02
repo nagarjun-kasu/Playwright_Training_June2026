@@ -3,12 +3,20 @@ import { expect, test, Page, Locator } from '@playwright/test'
 const APP_URL = "https://nagarjunreddykasu.github.io/web-automation-practice-site/";
 
 test.describe.configure({mode:'serial'})
-
-test.beforeEach(async({page})=>{
+let page:Page;
+test.beforeEach(async({browser})=>{
+    const context = await browser.newContext({recordVideo:{
+        dir:'Videos/',
+        size:{
+            width:1280,
+            height:720
+        }
+    }});
+    page = await context.newPage();
     await page.goto(`${APP_URL}`);
 })
 
-test("@sanity validate visual comparison", async({page})=>{
+test("@sanity validate visual comparison", async()=>{
     await page.getByRole("link", {name:'KMart'}).click();
     await expect(page).toHaveScreenshot('kmart.png');
 })

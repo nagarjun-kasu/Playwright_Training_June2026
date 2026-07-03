@@ -8,7 +8,7 @@ import { stringFormat } from '../../utils/common';
 
 const BASE_URL = 'https://restful-booker.herokuapp.com';
 
-test("create booking with dynamic payload", async({request})=>{
+test("get booking details based on booking id", async({request})=>{
     const firstName = faker.person.firstName();
     const lastName = faker.person.lastName();
     const totalPrice = faker.number.int({min:100, max:1000});
@@ -61,7 +61,19 @@ test("create booking with dynamic payload", async({request})=>{
 
     });
 
+    const booking_id = responseBody.bookingid;
 
+    const getResponse = await request.get(`${BASE_URL}/booking/${booking_id}`);
 
+    expect(getResponse.status()).toBe(200);
+    expect(getResponse.ok()).toBeTruthy();
+
+    const getBookingDetails = await getResponse.json();
+    expect(getBookingDetails).toHaveProperty("firstname", firstName);
+    expect(getBookingDetails).toHaveProperty("lastname", lastName);
+    expect(getBookingDetails).toHaveProperty("totalprice", totalPrice);
+    expect(getBookingDetails.bookingdates).toHaveProperty("checkin", dynamicPayload.bookingdates.checkin);
+    expect(getBookingDetails.bookingdates).toHaveProperty("checkout", dynamicPayload.bookingdates.checkout);
+    expect(getBookingDetails).toHaveProperty("additionalneeds", dynamicPayload.additionalneeds);
 
 })

@@ -1,0 +1,11 @@
+{
+  bookingid: 4576,
+  booking: {
+    firstname: 'Johanna',
+    lastname: 'Ritchie',
+    totalprice: 189,
+    depositpaid: true,
+    bookingdates: { checkin: '2026-07-03', checkout: '2026-07-08' },
+    additionalneeds: 'tddjmbzkuh'
+  }
+}

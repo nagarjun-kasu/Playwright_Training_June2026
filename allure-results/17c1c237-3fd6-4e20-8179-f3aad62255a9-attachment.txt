@@ -1,0 +1,12 @@
+{
+  bookingid: 3373,
+  booking: {
+    firstname: 'Freddie',
+    lastname: 'Hoeger',
+    totalprice: 720,
+    depositpaid: true,
+    bookingdates: { checkin: '2026-07-03', checkout: '2026-07-08' },
+    additionalneeds: 'zsrwrmfsou'
+  }
+}
+string

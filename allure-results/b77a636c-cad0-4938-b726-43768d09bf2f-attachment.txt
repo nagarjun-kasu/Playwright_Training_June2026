@@ -1,0 +1,12 @@
+{
+  bookingid: 3667,
+  booking: {
+    firstname: 'Marlee',
+    lastname: 'Lueilwitz',
+    totalprice: 771,
+    depositpaid: true,
+    bookingdates: { checkin: '2026-07-03', checkout: '2026-07-08' },
+    additionalneeds: 'wyiynvjmpg'
+  }
+}
+string

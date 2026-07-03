@@ -1,0 +1,11 @@
+{
+  bookingid: 3507,
+  booking: {
+    firstname: 'Salvatore',
+    lastname: 'Oberbrunner',
+    totalprice: 346,
+    depositpaid: true,
+    bookingdates: { checkin: '2026-07-03', checkout: '2026-07-08' },
+    additionalneeds: 'htdgojpghf'
+  }
+}

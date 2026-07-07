@@ -1,0 +1,13 @@
+{
+  bookingid: 3578,
+  booking: {
+    firstname: 'Bret',
+    lastname: 'Little',
+    totalprice: 234,
+    depositpaid: true,
+    bookingdates: { checkin: '2026-07-07', checkout: '2026-07-12' },
+    additionalneeds: 'dfopmzsicd'
+  }
+}
+ ************* Generate TOKEN **********
+******* Delete Booking*************

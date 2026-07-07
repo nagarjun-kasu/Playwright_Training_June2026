@@ -1,0 +1,13 @@
+{
+  bookingid: 3332,
+  booking: {
+    firstname: 'Marc',
+    lastname: 'Mante',
+    totalprice: 962,
+    depositpaid: true,
+    bookingdates: { checkin: '2026-07-07', checkout: '2026-07-12' },
+    additionalneeds: 'zvpkrnppun'
+  }
+}
+ ************* Generate TOKEN **********
+******* Delete Booking*************

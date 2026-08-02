@@ -1,0 +1,247 @@
+/*
+API Automation interview questions using Playwright with Typescript:
+=========================================================================
+1. How do you handle authentication in API testing using Playwright?
+Answer: In Playwright, you can handle authentication in API testing by including the necessary authentication headers or
+tokens in your API requests. For example, if you are using token-based authentication, you can generate a token by making a POST request
+to the authentication endpoint and then include that token in the headers of subsequent API requests.
+You can also use Playwright's request interception feature to modify outgoing requests and add authentication details dynamically.
+
+2. Can you explain how to send different types of HTTP requests (GET, POST, PUT, DELETE) using Playwright?
+Answer: In Playwright, you can send different types of HTTP requests using the `request` object. For example:
+- To send a GET request: `await request.get('/api/data')`
+- To send a POST request: `await request.post('/api/data', { data: { key: 'value' } })`
+- To send a PUT request: `await request.put('/api/data/1', { data: { key: 'value' } })`
+- To send a DELETE request: `await request.delete('/api/data/1')`
+You can also include headers, query parameters, and request body as needed for each type of request.
+Playwright provides a flexible API for constructing and sending HTTP requests in your tests.
+
+3. How do you validate the response of an API request in Playwright?
+Answer: In Playwright, you can validate the response of an API request by using assertions to check the status code, response body, 
+headers, and other relevant details. For example:
+- To check the status code: `expect(response.status()).toBe(200)`
+- To check the response body: `expect(await response.json()).toEqual({ key: 'value' })`
+- To check headers: `expect(response.headers()['content-type']).toBe('application/json')`
+You can also use Playwright's built-in matchers and assertion libraries to perform more complex validations on the response data.
+
+4. How do you handle dynamic data in API testing with Playwright?
+Answer: In Playwright, you can handle dynamic data in API testing by generating or retrieving the necessary data during the test execution.
+For example, you can use libraries like Faker to generate random data for your API requests, or you can retrieve data from a database or
+another API endpoint before making your main API request.
+You can also use Playwright's test hooks (beforeAll, beforeEach) to set up any necessary data or state before running your tests.
+Additionally, you can store dynamic data in variables and use them across multiple API requests within the same test.
+
+5. Can you explain how to use fixtures in Playwright for API testing?
+Answer: In Playwright, fixtures are a powerful way to set up and manage test data and state for your API tests.
+You can define fixtures using the `test` object and use them to create reusable components for your tests.
+For example, you can create a fixture for generating authentication tokens, setting up test data, or configuring the API client.
+Fixtures can be scoped to different levels (test, describe, or file) and can be used to share data and state across multiple tests.
+This helps to keep your tests organized and reduces code duplication.
+You can also use fixtures to handle setup and teardown logic for your API tests, ensuring that your tests run in a clean and 
+consistent environment.
+
+6. How do you manage test data for API tests in Playwright?
+Answer: In Playwright, you can manage test data for API tests by using a combination of fixtures, external data files, and dynamic data generation.
+You can create fixtures to set up and tear down test data before and after your tests run. For example, you can use a fixture to create a new user or 
+resource before a test and then clean it up afterward.
+You can also store test data in external JSON or CSV files and load that data into your tests as needed.
+This allows you to separate your test data from your test logic and makes it easier to maintain and update your tests.
+Additionally, you can use libraries like Faker to generate dynamic test data on the fly, which can help to ensure that
+your tests are more robust and less brittle.
+Overall, managing test data effectively is crucial for ensuring that your API tests are reliable and maintainable over time.
+
+7. How do you handle asynchronous operations in API testing with Playwright?
+Answer: In Playwright, you can handle asynchronous operations in API testing by using async/await syntax to ensure that
+ your tests wait for the necessary operations to complete before proceeding.
+ For example, when making an API request, you can use `await` to wait for the response before performing assertions on it:
+```typescript
+const response = await request.get('/api/data');
+expect(response.status()).toBe(200);
+```
+You can also use Playwright's built-in wait functions, such as `waitForResponse`, to wait for specific API responses or 
+conditions to be met before continuing with your test logic.
+This is particularly useful when dealing with APIs that may have variable response times or when you need to wait for certain events
+to occur before proceeding with your assertions. By effectively handling asynchronous operations, 
+you can ensure that your API tests are reliable and do not produce false positives or negatives due to timing issues.
+
+8. Can you explain how to use Playwright's request interception feature for API testing?
+Answer: Playwright's request interception feature allows you to intercept and modify outgoing HTTP requests before they are sent to the server.
+This can be useful for various purposes, such as adding authentication headers, modifying request payloads, or simulating different server 
+responses.
+To use request interception in Playwright, you can set up a route handler using the `page.route` method. For example:
+```typescript
+page.route('**-/api/data', (route) => {
+  const request = route.request();
+  // Modify the request before it's sent
+  route.continue();
+});
+```
+9. How do you handle environment variables and configuration in Playwright for API testing?
+ANswer: In Playwright, you can handle environment variables and configuration for API testing by using a combination of environment variable
+ management and configuration files.
+You can use the `dotenv` package to load environment variables from a `.env` file, which allows you to keep sensitive information
+ like API keys and credentials out of your codebase. For example:
+```typescriptimport dotenv from 'dotenv';
+dotenv.config();
+const apiKey = process.env.API_KEY;
+```
+You can also create a configuration file (e.g., `config.ts`) to manage different settings for your API tests, such as base URLs, timeouts,
+and other parameters. This allows you to easily switch between different environments (e.g., development, staging, production)
+by simply changing the configuration file or using environment variables to override specific settings.
+By effectively managing environment variables and configuration, you can ensure that your API tests are flexible and 
+can be easily adapted to different testing scenarios and environments.
+
+10. Can you explain how to use Playwright's test runner for organizing and executing API tests?
+Answer: Playwright's test runner provides a structured way to organize and execute your API tests. You can use the `test` function to define individual test cases, and you can group related tests together using `test.describe`. For example:
+```typescript
+test.describe('API Tests', () => {
+  test('should fetch data from API', async () => {
+    // Test implementation
+  });
+});
+```
+The test runner also supports various features such as test hooks (beforeAll, afterAll, beforeEach, afterEach) for setting up and
+ tearing down test data or state, and test annotations (test.skip, test.only) for controlling which tests are executed.
+ You can run your tests using the Playwright CLI, and you can also integrate the test runner with CI/CD pipelines for automated testing.
+ Additionally, the test runner provides built-in reporting features that allow you to view test results and debug any issues that 
+ arise during testing. Overall, using Playwright's test runner helps to keep your API tests organized and 
+ maintainable while providing powerful features for managing your test suite effectively.
+
+11. How do you integrate Playwright API tests with CI/CD pipelines?
+Answer: To integrate Playwright API tests with CI/CD pipelines, you can follow these steps:
+1. Set up your CI/CD pipeline (e.g., using GitHub Actions, Jenkins, GitLab CI) to run your Playwright tests as part of the build or deployment process.
+2. Install the necessary dependencies for your Playwright tests in the CI/CD environment, including Playwright itself and any additional libraries you may be using (e.g., dotenv for environment variable management).
+3. Configure your CI/CD pipeline to execute the Playwright test command (e.g., `npx playwright test`) as part of the testing stage.
+4. Ensure that any required environment variables or configuration settings are properly set in the CI/CD environment, either through environment variable management or by using configuration files.
+5. Set up reporting and notifications in your CI/CD pipeline to receive feedback on test results, such as sending email notifications or integrating with a dashboard for test reporting.
+6. Optionally, you can also configure your CI/CD pipeline to run tests in parallel or on different environments (e.g., staging, production) to ensure comprehensive testing coverage.
+By integrating Playwright API tests into your CI/CD pipeline, you can automate the testing process and ensure that your API is thoroughly tested before deployment, helping to catch issues early and maintain the quality of your application.
+
+12. Can you explain how to use Playwright's debugging tools for troubleshooting API tests?
+Answer: Playwright provides several debugging tools that can help you troubleshoot API tests effectively. Some of the key debugging features include:
+1. Debugging with `debug` mode: You can run your tests in debug mode by using the `--debug` flag when executing your tests. This allows you to step through your test code and inspect variables, responses, and other details at runtime.
+2. Using `console.log`: You can add `console.log` statements in your test code to output relevant information about the API requests and responses, which can help you understand the flow of your tests and identify any issues.
+3. Inspecting network traffic: Playwright allows you to intercept and inspect network traffic, which can be useful for debugging API requests and responses. You can use the `page.route` method to log or modify outgoing requests and responses.
+4. Using Playwright's built-in test reporter: Playwright provides a built-in test reporter that gives you detailed information about test execution, including any failures or errors that occur during testing. This can help you quickly identify and address issues in your API tests.
+5. Integrating with browser developer tools: If your API tests involve interactions with a web application, you can use the browser's developer tools to inspect network requests, view console logs, and analyze the behavior of your application during testing.
+By leveraging these debugging tools, you can effectively troubleshoot and resolve issues in your Playwright API tests, ensuring that your tests are reliable and provide accurate feedback on the functionality of your API.
+
+13. How do you handle rate limiting and retries in API testing with Playwright?
+Answer: In Playwright, you can handle rate limiting and retries in API testing by implementing a retry mechanism in your test code. This can be done using a simple loop or by using a library like `retry` to manage retries more effectively. For example:
+```typescriptasync function makeApiRequestWithRetry(url: string, options: RequestOptions, maxRetries: number = 3) {
+  let attempts = 0;
+  while (attempts < maxRetries) {
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response;
+    } catch (error) {
+      attempts++;
+      if (attempts >= maxRetries) {
+        throw error;
+      }
+      // Wait before retrying (e.g., using setTimeout or a more sophisticated backoff strategy)
+      await new Promise(resolve => setTimeout(resolve, 1000 * attempts)); // Exponential backoff
+    }
+  }
+}
+```
+In this example, the `makeApiRequestWithRetry` function attempts to make an API request and retries if it encounters an error (such as a rate limit response). The function will retry up to a specified number of times (`maxRetries`) and includes a simple exponential backoff strategy to wait longer between each retry attempt. By implementing this retry mechanism, you can help ensure that your API tests are more resilient to transient issues such as rate limiting or temporary network failures.
+
+14. Can you explain how to use Playwright's test hooks (beforeAll, afterAll, beforeEach, afterEach) for API testing?
+Answer: Playwright's test hooks (beforeAll, afterAll, beforeEach, afterEach) are used to set up and tear down test data or state for your API tests. Here's how you can use them:
+- `beforeAll`: This hook runs once before all tests in a test suite. You can use it to set up any necessary data or state that is shared across all tests. For example, you might create a test user or generate an authentication token that will be used by multiple tests.
+- `afterAll`: This hook runs once after all tests in a test suite have completed. You can use it to clean up any data or state that was created in the `beforeAll` hook, such as deleting test users or revoking tokens.
+- `beforeEach`: This hook runs before each individual test. You can use it to set up any necessary data or state that is specific to each test, such as creating a new resource or resetting the database to a known state.
+- `afterEach`: This hook runs after each individual test. You can use it to clean up any data or state that was created in the `beforeEach` hook, ensuring that each test runs in a clean environment.
+By using these hooks effectively, you can ensure that your API tests are well-organized and maintainable, with clear setup and teardown logic that helps to prevent issues caused by shared state or data between tests.
+
+15. How do you handle pagination and filtering in API testing with Playwright?
+Answer: In Playwright, you can handle pagination and filtering in API testing by constructing your API requests to include the necessary query parameters for pagination and filtering. For example, if your API supports pagination with parameters like `page` and `limit`, you can include those in your request URL:
+```typescript
+const url = `${apiUrl}?page=${pageNumber}&limit=${itemsPerPage}`;
+```
+Similarly, if your API supports filtering with parameters like `status` or `category`, you can include those in your request URL as well:
+```typescript
+const url = `${apiUrl}?status=${status}&category=${category}`;
+```
+You can then send the API request using Playwright's `request` object and validate the response to ensure that the pagination and filtering are working as expected. For example, you can check that the correct number of items is returned for a given page or that the items returned match the specified filter criteria. By effectively handling pagination and filtering in your API tests, you can ensure that your tests cover a wide range of scenarios and provide comprehensive validation of your API's functionality.
+
+16. Can you explain how to use Playwright's test annotations (test.describe, test.skip, test.only) for API testing?
+Answer: Playwright's test annotations (test.describe, test.skip, test.only) are used to organize and control the execution of your API tests. Here's how you can use them:
+- `test.describe`: This annotation is used to group related tests together. You can use it to create a test suite that contains multiple test cases that share a common context or setup. For example:
+```typescripttest.describe('User API Tests', () => {
+  test('should create a new user', async () => {
+    // Test implementation
+  });
+});
+```
+- `test.skip`: This annotation is used to skip a specific test or a group of tests. You can use it when you have tests that are not relevant for a particular run or when you are still working on the implementation of a test. For example:
+```typescript
+test.skip('should not create a user with invalid data', async () => {
+  // Test implementation
+});
+```
+- `test.only`: This annotation is used to run only a specific test or a group of tests. You can use it when you want to focus on a particular test case during development or debugging. For example:
+```typescript
+test.only('should create a new user', async () => {
+  // Test implementation
+});
+```
+By using these annotations effectively, you can organize your API tests in a way that makes it easier to manage and execute them, allowing you to focus on specific tests when needed and skip tests that are not relevant for a particular run. This helps to improve the efficiency of your testing process and ensures that you can quickly identify and address any issues in your API tests.
+
+17. How do you handle file uploads and downloads in API testing with Playwright?
+Answer: In Playwright, you can handle file uploads and downloads in API testing by using the appropriate methods for sending multipart/form-data requests for uploads and handling responses for downloads. For file uploads, you can use the `request.post` method with a FormData object to send the file as part of the request body. For example:
+```typescript
+const formData = new FormData();
+formData.append('file', fileBuffer);
+const response = await request.post(`${apiUrl}/upload`, { multipart: formData });
+```
+For file downloads, you can use the `request.get` method to fetch the file and then save it to a local location. For example:
+```typescript
+const response = await request.get(`${apiUrl}/download/${fileId}`);
+const fileContent = await response.body();
+// Save fileContent to a local file
+```
+You can also validate the response for downloads by checking the status code, content type, and other relevant headers to ensure that the file was downloaded successfully. By effectively handling file uploads and downloads in your API tests, you can ensure that your tests cover a wide range of scenarios and provide comprehensive validation of your API's functionality related to file handling.
+
+18. Can you explain how to use Playwright's test reporting features for API testing?
+Answer: Playwright provides built-in test reporting features that allow you to view detailed information about your API tests, 
+including test results, failures, and errors. When you run your tests using the Playwright CLI, it generates a report in the terminal 
+that shows the status of each test (passed, failed, skipped) along with any relevant error messages or stack traces for failed tests. 
+Additionally, Playwright can generate HTML reports that provide a more visual representation of your test results, 
+including screenshots and logs for each test case. You can configure the reporting options in your Playwright configuration
+file to specify the format and location of the reports. By using Playwright's test reporting features effectively,
+you can quickly identify and address any issues in your API tests, ensuring that your tests provide accurate feedback on the
+functionality of your API.
+
+19. How do you handle cross-origin requests in API testing with Playwright?
+Answer: In Playwright, you can handle cross-origin requests in API testing by configuring the appropriate CORS (Cross-Origin Resource Sharing)
+settings on the server side of your API. This typically involves setting the `Access-Control-Allow-Origin` header to allow requests
+from the origin of your test environment. If you are testing an API that you do not control, you may need to use a proxy server or 
+mock the API responses to bypass CORS restrictions during testing. Additionally, Playwright's request interception
+feature can be used to modify outgoing requests and add necessary headers to handle cross-origin requests effectively.
+By ensuring that your API is properly configured for CORS and using Playwright's features to manage cross-origin requests, 
+you can ensure that your API tests run smoothly without encountering issues related to CORS.
+
+20. Can you explain how to use Playwright's test parameterization for API testing?
+Answer: Playwright's test parameterization allows you to run the same test with different sets of data, 
+which is particularly useful for API testing when you want to validate the behavior of your API with various input values.
+You can achieve this by using the `test.each` method to define a table of test cases with different parameters. For example:
+```typescript
+test.each([
+  { input: 'value1', expected: 'result1' },
+  { input: 'value2', expected: 'result2' },
+])('should return expected result for input %o', async ({ input, expected }) => {
+  const response = await request.post('/api/endpoint', { data: { key: input } });
+  const responseBody = await response.json();
+  expect(responseBody.result).toBe(expected);
+});
+In this example, the test will run twice, once with `input` set to 'value1' and `expected` set to 'result1', and once with `input` set to 
+'value2' and `expected` set to 'result2'.
+This allows you to easily test multiple scenarios without having to write separate test cases for each one, 
+making your API tests more efficient and maintainable.
+
+*/

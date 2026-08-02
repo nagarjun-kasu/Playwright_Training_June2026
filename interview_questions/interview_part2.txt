@@ -1,0 +1,237 @@
+/*
+Playwright Interview Questions-2
+=================================
+1. What are your responsibilities in your project?
+Answer: In my project, my responsibilities include designing and implementing automated test scripts using Playwright,
+maintaining the test framework, and ensuring that our tests are reliable and efficient. 
+I also collaborate with the development team to understand the application features and requirements, and
+I work on creating comprehensive test cases that cover various scenarios. 
+Additionally, I am responsible for analyzing test results, identifying any issues or failures, and working with the team to resolve them. 
+Overall, my role is to ensure that our automated testing efforts contribute to the overall quality and success of the project.
+
+2. Explain the automation framework that you are following in your recent project?
+Answer: In my recent project, we are following a hybrid automation framework that combines the benefits of both data-driven and
+keyword-driven testing approaches. This allows us to create flexible and maintainable test scripts that can easily adapt to changes
+in the application under test. The framework is designed to separate the test logic from the test data, making it easier to manage
+and update test cases as needed. We also utilize page object models to encapsulate the interactions with the application's user interface,
+which helps to improve code reusability and maintainability. Overall, this hybrid framework allows us to efficiently automate 
+our test cases while ensuring that our tests are robust and reliable.
+
+3. What are the challenges you faced during autmation script preparation and execution?
+Answer: Some of the challenges I faced during automation script preparation and execution include:
+1. Dynamic Elements: Handling dynamic elements on the web page that change their properties or locators can be challenging. I had to implement strategies to identify and interact with these elements reliably.
+2. Test Data Management: Managing test data effectively was a challenge, especially when dealing with large datasets or complex scenarios. I had to create a robust test data management strategy to ensure that the tests were consistent and maintainable.
+3. Cross-Browser Compatibility: Ensuring that the automation scripts work across different browsers and platforms was another challenge. I had to perform extensive testing and make necessary adjustments to handle browser-specific issues.
+4. Flaky Tests: Dealing with flaky tests that sometimes pass and sometimes fail due to timing issues or other factors was a significant challenge. I had to implement retries and improve the stability of the tests to minimize flakiness.
+
+4. How many test cases do you automate in each sprint?
+Answer: The number of test cases that I automate in each sprint can vary depending on the complexity of the features being developed 
+and the testing requirements. However, I typically aim to automate a significant portion of the test cases that are critical 
+for validating the functionality of the application. This can range from 20 to 50 test cases per sprint, 
+depending on the scope of the work and the resources available. The goal is to ensure that we have a robust suite of automated tests 
+that can provide quick feedback on the quality of the application while also allowing for manual testing where necessary.
+
+5. What type of framework that you used in your project? Explain about the framework.
+Answer: In our project, we are using a hybrid framework that combines the benefits of both data-driven and keyword-driven testing approaches.
+This allows us to create flexible and maintainable test scripts that can easily adapt to changes in the application under test. 
+The framework is designed to separate the test logic from the test data, making it easier to manage and update test cases as needed.
+We also utilize page object models to encapsulate the interactions with the application's user interface, which helps to 
+improve code reusability and maintainability. Overall, this hybrid framework allows us to efficiently automate our test cases 
+while ensuring that our tests are robust and reliable.
+
+6. How to read the config data from JSON file?
+Answer: To read config data from a JSON file in TypeScript, you can use the `import` statement with the `type: "json"` option. This allows you to import the JSON file directly as a JavaScript object. For example:
+```typescript
+import configData from './config.json' with { type: "json" };
+
+console.log(configData);
+```
+In this example, the `configData` variable will contain the contents of the `config.json` file as a JavaScript object,
+which you can then use in your code to access the configuration values. Make sure that the path to the JSON file is correct and
+that the file is properly formatted as JSON for this to work correctly.
+
+7. Explain the mocha framework with page object model design pattern?
+Answer: The Mocha framework with Page Object Model (POM) design pattern is a popular approach for test automation that
+combines the benefits of the Mocha testing framework and the Page Object Model design pattern. 
+In this framework, you define your test cases using Mocha's syntax and structure, while organizing your test code using
+the Page Object Model design pattern. The Page Object Model design pattern helps to create a clear separation between the test logic
+and the page interactions by creating separate classes for each page of the application. 
+This promotes code reusability and maintainability, as any changes to the page structure can be easily managed within
+the corresponding page object class. By using Mocha with POM, you can create clear and maintainable test cases that
+are easy to understand and collaborate on across different teams.
+
+8. Explain the cucumber bdd framework with POM?
+Answer: Cucumber BDD framework with POM (Page Object Model) is a popular approach for test automation that
+ combines the benefits of Behavior-Driven Development (BDD) and the Page Object Model design pattern.
+ In this framework, you define your test scenarios in a human-readable format using Gherkin syntax, 
+ which allows for better collaboration between technical and non-technical team members.
+ The Page Object Model design pattern helps to organize your test code by creating separate classes for each page of the application,
+ encapsulating the interactions with the page elements. This promotes code reusability and 
+ maintainability, as any changes to the page structure can be easily managed within the corresponding page object class. 
+ By using Cucumber BDD with POM, you can create clear and maintainable test cases that are easy to understand and 
+ collaborate on across different teams.
+
+9. What are the different hooks in cucumber-js?
+Answer: In cucumber-js, there are several hooks that allow you to execute code at specific points during the test execution process.
+The main hooks include:
+1. Before: This hook runs before each scenario and is typically used for setup tasks, such as initializing test data or configuring the test environment.
+2. After: This hook runs after each scenario and is commonly used for cleanup tasks, such as resetting the test environment or clearing test data.
+3. BeforeStep: This hook runs before each step in a scenario and can be used to perform actions that need to be executed before every step, such as logging or setting up preconditions.
+4. AfterStep: This hook runs after each step in a scenario and can be used for actions that need to be executed after every step, such as logging results or taking screenshots.
+
+10. What is the difference between 'before' and 'beforeStep' hook?
+Answer: The 'before' hook in cucumber-js runs once before each scenario, allowing you to perform setup tasks that are needed for the entire
+scenario. In contrast, the 'beforeStep' hook runs before each individual step within a scenario, allowing you to perform actions
+that need to be executed before every step. The 'before' hook is typically used for tasks that are common to the entire scenario, 
+while the 'beforeStep' hook is used for tasks that are specific to each step.
+
+11. What is the difference between 'after' and 'afterStep' hook?
+Answer: The 'after' hook in cucumber-js runs once after each scenario, allowing you to perform cleanup tasks that are needed for the entire
+ scenario. In contrast, the 'afterStep' hook runs after each individual step within a scenario, allowing you to perform actions that 
+ need to be executed after every step. The 'after' hook is typically used for tasks that are common to the entire scenario, 
+ while the 'afterStep' hook is used for tasks that are specific to each step.
+
+12. What is the command to execute the test cases based on tag in parallel mode?
+Answer: To execute test cases based on a specific tag in parallel mode using cucumber-js, you can use the following command:
+```npx cucumber-js --tags @yourTag --parallel
+```
+```
+Replace `@yourTag` with the actual tag you want to filter by. 
+This command will run all the scenarios that are tagged with `@yourTag` in parallel, allowing for faster test execution.
+
+13. What would you do when the test case failed during execution?
+Answer: When a test case fails during execution, I would first analyze the test results and logs to identify the root cause of the failure.
+I would check for any error messages or stack traces that can provide insights into what went wrong.
+If the failure is due to a test script issue, I would review the code to identify any bugs or issues and fix them accordingly.
+If the failure is due to an environment issue, I would investigate the environment setup and configurations to ensure that they are correct.
+Additionally, I would communicate with the team to share the findings and collaborate on resolving the issue before re-running the test case
+to verify that it passes successfully.
+
+14. How to re-execute only the failed test cases?
+Answer: To re-execute only the failed test cases, you can use the test runner's built-in functionality to filter and 
+run only the tests that failed in the previous execution.
+For example, if you are using Jest as your test runner, you can use the `--onlyFailures` flag to run only the failed tests. 
+If you are using Mocha, you can use the `--grep` option to specify a pattern that matches the failed test cases.
+Additionally, some test runners may generate a report or a file that contains the list of failed test cases,
+which you can then use to create a custom script to re-run those specific tests.
+By re-executing only the failed test cases, you can save time and resources while ensuring that any issues are addressed before the next release.
+
+15. What are the steps that you follow when there is a flaky test?
+Answer: When there is a flaky test, I follow these steps:
+1. Identify the flaky test: I analyze the test results to identify which test is flaky and understand the pattern of its failures.
+2. Investigate the root cause: I investigate the root cause of the flakiness by reviewing the test code, checking for any dependencies, and analyzing the environment in which the test is running.
+3. Isolate the test: I try to isolate the flaky test by running it independently to see if it consistently fails or passes.
+4. Fix the issue: Once I identify the root cause, I work on fixing the issue, which may involve updating the test code, improving the test environment, or addressing any dependencies that may be causing the flakiness.
+5. Monitor the test: After fixing the issue, I monitor the test over multiple runs to ensure that it is no longer flaky and is providing reliable results.
+
+16. What is the test execution process in your project?
+Answer: The test execution process in our project involves several steps. First, we prepare our test environment by setting up the necessary
+ configurations and dependencies.
+ Then, we execute our test cases using a test runner, which runs the tests in parallel to save time.
+ After the execution, we generate reports that provide insights into the test results, including any failures or errors.
+ Finally, we analyze the reports to identify any issues and take necessary actions to fix them before the next release.
+
+17. How do you integrate automation project in Jenkins?
+Answer: To integrate an automation project in Jenkins, you can follow these steps:
+1. Install Jenkins on your server or use a cloud-based Jenkins service.
+2. Create a new Jenkins job for your automation project.
+3. Configure the job to pull the code from your version control system (e.g., GitHub, GitLab).
+4. Set up the build steps to install dependencies and run your automation tests (e.g., using npm scripts or command line).
+5. Configure the post-build actions to generate test reports and send notifications if needed.
+6. Save the job configuration and trigger the build to execute your automation tests in Jenkins.
+
+18. How to schedule a Job in Jenkins?
+Answer: To schedule a job in Jenkins, you can follow these steps:
+1. Open Jenkins and navigate to the job you want to schedule.
+2. Click on "Configure" to open the job configuration page.
+3. Scroll down to the "Build Triggers" section.
+4. Select "Build periodically" or "Poll SCM" depending on your requirements.
+5. Enter the cron expression for the schedule.
+6. Save the configuration.
+
+19. What is the advantage of using CI/CD pipeline?
+Answer: The advantage of using a CI/CD pipeline is that it automates the software development process, from code commits to deployment, 
+ensuring faster and more reliable releases. It helps in identifying issues early, reducing manual errors, and 
+improving collaboration among team members.
+
+20. How to create a pipeline in Jenkins and explain the process of executing automation suite through Jenkins pipeline?
+Answer: To create a pipeline in Jenkins, you can use the Jenkinsfile, which is a text file that defines the CI/CD pipeline.
+The process involves defining stages such as checkout, build, test, and deploy within the Jenkinsfile.
+When you commit code to your repository, Jenkins automatically triggers the pipeline based on the defined stages.
+
+21. What kind of report are you generating after test suite execution?
+Answer: After test suite execution, we generate detailed reports that include information about the test cases that were executed,
+the results of each test case (pass/fail), and any error messages or stack traces for failed tests.
+These reports can be in various formats such as HTML, XML, or JSON, and they provide insights into the overall health of the application 
+being tested.
+
+
+Git:
+1. What are the different stages in committing the code in GitHub?
+Answer: The different stages in committing code in GitHub are:
+1. Untracked: When you create a new file or make changes to an existing file, it is in the untracked stage. Git is not yet aware of this file.
+2. Staged: When you add a file to the staging area using the `git add` command, it moves from the untracked stage to the staged stage. This means that the file is ready to be committed.
+3. Committed: When you commit the staged changes using the `git commit` command, it moves from the staged stage to the committed stage. This means that the changes are now saved in the local repository.
+4. Pushed: After committing, you can push your changes to a remote repository (e.g., GitHub) using the `git push` command. This makes your changes available to others who have access to the remote repository.
+
+2. When do you commit your code? After committing, how do you validate that everyone has the updated code?
+Answer: I commit my code after I have made meaningful changes that are ready to be shared with the team.
+This could be after completing a feature, fixing a bug, or making improvements to the codebase.
+After committing, I validate that everyone has the updated code by pushing my changes to the remote repository (e.g., GitHub) and 
+then communicating with the team to ensure they pull the latest changes.
+Additionally, I may use pull requests to review and merge changes, which also helps in ensuring that everyone is aware of the updates 
+being made to the codebase.
+
+3. How to merge the changes to main/master branch? Explain the process.
+Answer: To merge changes to the main/master branch, you typically follow these steps:
+1. Create a new branch from the main/master branch to work on your changes.
+2. Make your changes and commit them to your branch.
+3. Push your branch to the remote repository (e.g., GitHub).
+4. Create a pull request (PR) from your branch to the main/master branch.
+5. Review the PR and address any feedback or comments from the reviewers.
+6. Once the PR is approved, merge it into the main/master branch using the merge option provided by the platform (e.g., GitHub).
+7. After merging, you can delete your feature branch if it is no longer needed.
+
+4. Why do you need a .gitignore file? How do you add files to it?
+Answer: A .gitignore file is used to specify which files or directories should be ignored by Git when committing changes to the repository.
+This is useful for excluding files that are not relevant to the project, such as build artifacts, temporary files, or 
+sensitive information like API keys.
+To add files to the .gitignore file, you simply list the file names or directory paths that you want to ignore, one per line. 
+For example, if you want to ignore all .log files and a specific directory called "node_modules", 
+your .gitignore file would look like this:
+```
+*.log
+node_modules/
+```
+This tells Git to ignore all files with the .log extension and the entire node_modules directory when committing changes to the repository.
+
+5. Is it possible to revert the committed changes? If yes, how to revert?
+Answer: Yes, it is possible to revert committed changes in Git. You can use the `git revert` command to create a new commit 
+that undoes the changes made in a specific commit. This is a safe way to undo changes because it preserves the commit history.
+For example, if you want to revert the last commit, you can run:
+`git revert <commit-hash>`
+This will create a new commit that reverses the changes made in the specified commit. If you want to revert multiple commits, 
+you can specify a range of commits or use the `--no-commit` option to stage the changes for review before committing.
+It is important to note that `git revert` does not delete any commits from the history, but rather adds new commits that
+negate the effects of the specified commits.
+
+6. How do you resolve the merge conflicts?
+Answer: To resolve merge conflicts in Git, you can follow these steps:
+1. Identify the conflicting files: When you attempt to merge branches and there are conflicts, Git will indicate which files have conflicts.
+2. Open the conflicting files: Open the files in a text editor or an integrated development environment (IDE) that supports Git.
+3. Look for conflict markers: Git will insert conflict markers in the file to indicate the conflicting sections. The markers look like this:
+
+4. Manually edit the file: You need to manually edit the file to resolve the conflicts by choosing which changes to keep or by combining the changes as needed.
+5. Remove conflict markers: After resolving the conflicts, make sure to remove the conflict markers from the file.
+6. Stage the resolved file: Use `git add <file>` to stage the resolved file for commit.
+7. Commit the changes: Finally, commit the resolved changes using `git commit` to complete the merge process.
+
+7. Explain the git process that you are following in your project?
+Answer: In our project, we follow a Git workflow that includes the following steps:
+1. Branching: We create feature branches for new features or bug fixes, which are branched off from the main/master branch.
+2. Development: We work on our changes in the feature branch and commit our changes regularly with meaningful commit messages.
+3. Code Review: Before merging changes into the main/master branch, we conduct code reviews to ensure code quality and consistency.
+4. Testing: We run tests to ensure that our changes do not introduce any regressions or issues.
+5. Merge: Once the changes are approved and tested, we merge them into the main/master branch.
+
+*/

@@ -1,0 +1,217 @@
+/*
+Playwright Interview Questions-1
+=================================
+1. What are the advantages of a Playwright?
+Answer:
+1. Cross-browser testing: Playwright supports multiple browsers, including Chromium, Firefox, and WebKit, allowing you to test your web applications across different platforms.
+2. Auto-waiting: Playwright automatically waits for elements to be ready before performing actions, reducing the chances of flaky tests.
+3. Headless mode: Playwright can run browsers in headless mode, which is faster and more efficient for automated testing.
+4. Network interception: Playwright allows you to intercept and modify network requests, enabling you to test various scenarios such as simulating slow network conditions or mocking API responses.
+5. Parallel testing: Playwright supports running tests in parallel, which can significantly reduce the overall test execution time.
+6. Rich API: Playwright provides a comprehensive API for interacting with web elements, making it easier to write complex test scenarios.
+7. Cross-platform support: Playwright can be used on various operating systems, including Windows, macOS, and Linux.
+8. Continuous Integration (CI) support: Playwright integrates well with CI/CD pipelines, allowing you to automate your testing process and ensure the quality of your applications.
+9. Open-source: Playwright is an open-source project, which means it has a large and active community contributing to its development and providing support.
+10. Easy to set up: Playwright has a simple setup process, making it easy for developers to get started with automated testing quickly.
+
+2. What are the browsers supported by Playwright?
+Answer:
+1. Chromium (Google Chrome, Microsoft Edge)
+2. Firefox
+3. WebKit (Safari)
+
+3. How do you launch a browser in Playwright?
+Answer:
+You can launch a browser in Playwright using the `playwright` library. Here's an example of how to launch a Chromium browser:
+```typescript
+const { chromium } = require('playwright');
+
+(async () => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  await page.goto('https://example.com');
+  await browser.close();
+})();
+```
+4. What are the locators in the Playwright?
+Answer:
+1. CSS Selectors: You can use CSS selectors to locate elements on the page. For example: `page.locator('button.submit')`.
+2. XPath: Playwright supports XPath for locating elements. For example: `page.locator('//button[text()="Submit"]')`.
+3. Text: You can locate elements based on their text content. For example: `page.locator('text=Submit')`.
+4. Role: You can locate elements based on their ARIA roles. For example: `page.locator('role=button[name="Submit"]')`.
+5. Test ID: You can use custom data attributes to locate elements. For example: `page.locator('[data-testid="submit-button"]')`.
+6. Label: You can locate form elements based on their associated labels. For example: `page.locator('label:has-text("Username")')`.
+7. Alt Text: You can locate images based on their alt text. For example: `page.locator('img[alt="Logo"]')`.
+8. Placeholder: You can locate input fields based on their placeholder text. For example: `page.locator('input[placeholder="Enter your name"]')`.
+9. Role and Name: You can locate elements based on their ARIA role and name. For example: `page.locator('role=button[name="Submit"]')`.
+
+5. How do you type into an input field in Playwright?
+Answer:
+You can type into an input field in Playwright using the `fill` method. Here's an example:
+```typescript
+const { chromium } = require('playwright');
+
+(async () => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  await page.goto('https://example.com');
+  await page.locator('input[name="username"]').fill('john_doe');
+  await browser.close();
+})();
+```
+
+6. Does Playwright support XPath? If so, how can you use them in the test?
+Answer:
+Yes, Playwright supports XPath for locating elements. You can use XPath selectors with the `locator` method. Here's an example:
+```typescript
+await page.locator('//button[text()="Submit"]').click();
+```
+7. What is headed and headless mode in Playwright?
+Answer:
+- Headed mode: The browser is launched with a graphical user interface, allowing you to see the test execution in real-time.
+- Headless mode: The browser is launched without a graphical user interface, which is faster and more efficient for automated testing.
+
+8. How to handle iFrame in PPlaywright? provide an example with code.
+Answer:
+You can switch to an iFrame using the `frameLocator` method. Here's an example:
+```typescript
+const frame = page.frameLocator('iframe[name="myFrame"]');
+await frame.locator('button').click();
+```
+9. How to perform drag and drop in Playwright?
+Answer:You can perform drag and drop using the `dragTo` method. Here's an example:
+```typescript
+const source = page.locator('#source');
+const target = page.locator('#target');
+await source.dragTo(target);
+```
+
+10. How to handle browser popups or dialogs? or How do you handle alerts in Playwright?
+Answer:You can handle browser popups or dialogs using the `dialog` event. Here's an example of how to handle an alert dialog:
+```typescript
+page.on('dialog', async (dialog) => {
+  console.log(dialog.message());
+  await dialog.accept();
+});
+// Trigger the alert dialog
+await page.click('#trigger-alert');
+
+11. How do you wait for an element to be visible in Playwright?
+Answer:You can wait for an element to be visible using the `waitForSelector` method with the `visible` option. Here's an example:
+```typescript
+await page.waitForSelector('#myElement', { state: 'visible' });
+```
+
+12. How do you get the text of an element in Playwright?
+Answer:You can get the text of an element using the `textContent` method. Here's an example:
+```typescript
+const text = await page.locator('#myElement').textContent();
+console.log(text);
+```
+13. How do you handle file uploads in Playwright?
+Answer:You can handle file uploads using the `setInputFiles` method. Here's an example:
+```typescript
+const filePath = 'path/to/your/file.txt';
+await page.locator('input[type="file"]').setInputFiles(filePath);
+```
+14. How to select a value from a drop down list?
+answer:You can select a value from a drop-down list using the `selectOption` method. Here's an example:
+```typescript
+await page.locator('select#mySelect').selectOption('optionValue');
+```
+15. How do you handle multiple windows in Playwright?
+Answer:You can handle multiple windows using the `context` and `page` objects. Here's an example:
+```typescript
+const [newPage] = await Promise.all([
+  context.waitForEvent('page'),
+  page.locator('#open-new-window').click()
+]);
+await newPage.waitForLoadState();
+console.log(await newPage.title());
+```
+16. How do you mouseover on an element in Playwright?
+Answer:You can mouseover on an element using the `hover` method. Here's an example:
+```typescript
+await page.locator('#myElement').hover();
+```
+17. How do you press Enter key in Playwright?
+Answer:You can press the Enter key using the `press` method. Here's an example:
+```typescript
+await page.locator('#myInput').press('Enter');
+```
+18. How do you wait for a specific timeout in Playwright?
+Answer:You can wait for a specific timeout using the `waitForTimeout` method. Here's an example:
+```typescript
+await page.waitForTimeout(5000); // Wait for 5 seconds
+```
+19. How do you assert that an element has specific text in Playwright? or How do you assert actual and expected validation messages?
+Answer:You can assert that an element has specific text using the `expect` function from the Playwright Test library. Here's an example:
+```typescript
+const { expect } = require('@playwright/test');
+const element = page.locator('#myElement');
+await expect(element).toHaveText('Expected Text');
+```
+20. What is Visual Testing? Why do we need it?
+Answer:Visual Testing is a type of testing that focuses on verifying the visual aspects of a web application, such as layout, design, and user interface elements. It involves comparing screenshots of the application against baseline images to identify any visual discrepancies or regressions. We need Visual Testing to ensure that the application's appearance remains consistent across different browsers, devices, and screen sizes, and to catch any unintended visual changes that may occur during development or updates.
+
+21. How do you store the login session information and skip the login for other test scenarios?
+Answer:You can store the login session information using Playwright's `storageState` feature. After logging in, you can save the storage state to a file and then load it in other test scenarios to skip the login process. Here's an example:
+```typescript// After logging in
+await page.context().storageState({ path: 'storageState.json' });
+```
+```typescript// In other test scenarios
+const { chromium } = require('playwright');
+(async () => {
+  const browser = await chromium.launch();
+  const context = await browser.newContext({ storageState: 'storageState.json' });
+    const page = await context.newPage();
+});
+```
+22. How to press the left mouse button?
+Answer:You can press the left mouse button using the `mouse` object. Here's an example:
+```typescript
+await page.mouse.down();
+await page.mouse.up();
+```
+
+23. How do you handle when there are multiple elements matched/returned with the locator?
+Answer:When there are multiple elements matched/returned with the locator, you can use the `nth` method to select a specific element from the list. Here's an example:
+```typescript
+const elements = page.locator('.myElements');
+await elements.nth(0).click(); // Click the first element
+await elements.nth(1).click(); // Click the second element
+```
+
+24. What are the different assertions in Playwright? (read at https://playwright.dev/docs/test-assertions)
+Answer:Playwright provides various assertions for validating different conditions in your tests. Some of the common assertions include:
+1. `toBeVisible()`: Asserts that an element is visible on the page.
+2. `toHaveText()`: Asserts that an element has specific text content.
+3. `toHaveAttribute()`: Asserts that an element has a specific attribute with a given value.
+4. `toHaveClass()`: Asserts that an element has a specific class.
+5. `toHaveCount()`: Asserts that a locator has a specific number of elements.
+6. `toHaveValue()`: Asserts that an input element has a specific value.
+7. `toBeChecked()`: Asserts that a checkbox or radio button is checked.
+8. `toBeDisabled()`: Asserts that an element is disabled.
+9. `toBeEditable()`: Asserts that an element is editable.
+10. `toHaveStyle()`: Asserts that an element has specific CSS styles.
+11. `toHaveScreenshot()`: Asserts that an element matches a baseline screenshot.
+12. `toHaveURL()`: Asserts that the page has a specific URL.
+13. `toHaveTitle()`: Asserts that the page has a specific title.
+14. `toHaveSelector()`: Asserts that an element matching a specific selector exists on the page.
+15. `toHaveTextContent()`: Asserts that an element has specific text content, ignoring whitespace and line breaks.
+
+25. How to parameterize tests in Playwright?
+Answer:You can parameterize tests in Playwright using the `test.each` method from the Playwright Test library. This allows you to run the same test with different sets of data. Here's an example:
+```typescript
+test.each([
+  { name: 'John', age: 30 },
+  { name: 'Jane', age: 25 }
+])('should display correct user information for %s', async ({ name, age }) => {
+  // Your test logic here
+});
+```
+26. How to maximize the browser window?
+Answer:You can maximize the browser window using the `maximize()` method on the page object. Here's an example:
+```typescript
+await page.setViewportSize({ width: 1280, height: 720 });
+```

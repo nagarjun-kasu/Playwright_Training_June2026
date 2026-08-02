@@ -1,0 +1,28 @@
+Playwright Interview Questions-1
+=================================
+1. What are the advantages of a Playwright?
+2. What are the browsers supported by Playwright?
+3. How do you launch a browser in Playwright?
+4. What are the locators in the Playwright?
+5. How do you type into an input field in Playwright?
+6. Does Playwright support XPath? If so, how can you use them in the test?
+7. What is headed and headless mode in Playwright?
+8. How to handle iFrame in PLaywright? provide an example with code.
+9. How to perform drag and drop in Playwright?
+10. How to handle browser popups or dialogs? or How do you handle alerts in Playwright?
+11. How do you wait for an element to be visible in Playwright?
+12. How do you get the text of an element in Playwright?
+13. How do you handle file uploads in Playwright?
+14. How to select a value from a drop down list?
+15. How do you handle multiple windows in Playwright?
+16. How do you mouseover on an element in Playwright?
+17. How do you press Enter key in Playwright?
+18. How do you wait for a specific timeout in Playwright?
+19. How do you assert that an element has specific text in Playwright? or How do you assert actual and expected validation messages?
+20. What is Visual Testing? Why do we need it?
+21. How do you store the login session information and skip the login for other test scenarios?
+22. How to press the left mouse button?
+23. How do you handle when there are multiple elements matched/returned with the locator?
+24. What are the different assertions in Playwright? (read at https://playwright.dev/docs/test-assertions)
+25. How to parameterize tests in Playwright?
+26. How to maximize the browser window?

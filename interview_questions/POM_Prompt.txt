@@ -1,0 +1,455 @@
+Create a production-ready Playwright framework using TypeScript and Page Object Model (POM).
+
+Requirements:
+
+- Use https://way2automation.com/way2auto_jquery/index.php as the sample application under test.
+
+- Use Playwright Test + TypeScript
+
+- Proper folder structure: pages, tests, fixtures, utils, test-data, config, reports, logs
+
+- Add playwright.config.ts, package.json, tsconfig.json, .env.example, README.md
+
+- Support Chromium browser
+
+- Add retries, screenshots, traces, video on failure
+
+- Use BasePage with reusable methods like click, fill, waitForElement, getText, isVisible, takeScreenshot
+
+- Create sample pages: LoginPage, HomePage, DashboardPage
+
+- Create sample tests: valid login, invalid login, title validation
+
+- Keep locators inside page classes only
+
+- Use fixtures for page object initialization
+
+- Add JSON test data support
+
+- Add environment config for dev/qa/staging
+
+- Integrate Allure report
+
+- Add logging utility
+
+- Follow enterprise-level coding standards, reusable architecture, clean code, DRY principles
+
+- Provide code file by file with file names
+
+- Make the framework scalable, maintainable, and interview-ready
+
+===================================================================================================================
+
+Detail Prompt for Page Object Model:
+
+Act as a senior test automation architect and build a complete, production-ready Playwright framework using TypeScript and the Page Object Model (POM) design pattern.
+The framework should be scalable, maintainable, reusable, and suitable for real-world enterprise UI automation projects.
+
+
+Project Goal:
+Create a robust Playwright TypeScript automation framework that supports web UI testing with clean architecture, reusable utilities, test data separation, reporting, logging, and easy CI/CD integration.
+
+Technical Stack:
+
+- Playwright
+
+- TypeScript
+
+- Node.js
+
+- Page Object Model (POM)
+
+- Playwright Test runner
+
+- Allure Report integration
+
+- Optional utility support for Excel/JSON test data
+
+- Environment-based configuration
+
+- GitHub Actions CI support
+
+
+Framework Requirements:
+
+1. Folder Structure
+
+Create a clean folder structure such as:
+
+- pages/
+
+- tests/
+
+- fixtures/
+
+- utils/
+
+- test-data/
+
+- config/
+
+- locators/ (optional if needed)
+
+- reports/
+
+- screenshots/
+
+- logs/
+
+Ensure the structure is modular and easy to extend.
+
+2. Base Setup
+
+Create:
+
+- playwright.config.ts
+
+- package.json
+
+- tsconfig.json
+
+- .gitignore
+
+- README.md
+
+
+The Playwright config should include:
+
+- base URL support
+
+- browser selection
+
+- headless/headed mode
+
+- screenshot on failure
+
+- video/traces on failure
+
+- retries
+
+- parallel execution support
+
+- multiple browser projects (Chromium, Firefox, WebKit)
+
+- reporter configuration
+
+
+3. Page Object Model Design
+
+Implement proper POM classes where:
+
+- each page has its own class file
+
+- locators are private or well-encapsulated
+
+- methods represent user actions and validations
+
+- no raw locators inside test files
+
+- reusable page methods are created for common actions
+
+Example pages:
+
+- LoginPage
+
+- HomePage
+
+- SearchPage or DashboardPage
+
+Use meaningful methods like:
+
+- navigateToLogin()
+
+- login(username, password)
+
+- verifyHomePageLoaded()
+
+- searchForProduct(productName)
+
+4. Base Page
+
+Create a reusable BasePage class containing common methods such as:
+
+- click
+
+- fill
+
+- type
+
+- waitForElement
+
+- getText
+
+- isVisible
+
+- selectDropdown
+
+- hover
+
+- uploadFile
+
+- takeScreenshot
+
+- generic navigation helpers
+
+All page classes should inherit from BasePage wherever appropriate.
+
+5. Test Design
+
+Create sample test cases using Playwright test syntax:
+
+- valid login test
+
+- invalid login test
+
+- page title validation
+
+- search or dashboard validation
+
+Tests should:
+
+- be clean and readable
+
+- use page object methods only
+
+- avoid duplicate code
+
+- support test tagging if possible
+
+- include assertions using expect
+
+6. Fixtures
+
+Create custom fixtures for:
+
+- page objects
+
+- browser/page setup
+
+- reusable login session if needed
+
+Use Playwright fixtures to improve test readability and avoid repeated instantiation of page classes.
+
+7. Test Data Management
+
+Support external test data using:
+
+- JSON files
+
+and optionally:
+
+- Excel utility reader
+
+Create example test data files for login credentials and sample inputs.
+
+Keep test data separate from test logic.
+
+8. Environment Configuration
+
+Provide support for multiple environments such as:
+
+- dev
+
+- qa
+
+- staging
+
+- production
+
+Allow base URLs and credentials to be controlled via:
+
+- .env files
+
+- environment variables
+
+- config helpers
+
+9. Utilities
+
+Create reusable utility classes/functions for:
+
+- reading JSON test data
+
+- optional Excel reading
+
+- date helpers
+
+- random data generation
+
+- screenshot helpers
+
+- common wait utilities
+
+10. Reporting
+
+Integrate Allure reporting.
+
+Framework should support:
+
+- test step reporting
+
+- screenshots on failure
+
+- attaching logs or screenshots to reports where possible
+
+Include commands for generating and opening the Allure report.
+
+11. Logging
+
+Add a logging utility using a clean Node.js logging approach.
+
+Framework should log:
+
+- test start/end
+
+- page actions
+
+- important checkpoints
+
+- errors
+
+12. Error Handling
+
+Implement meaningful error handling with clear messages.
+
+Where useful, wrap common actions in helper methods with descriptive logs and failures.
+
+13. CI/CD Ready
+
+Provide a GitHub Actions workflow file that:
+
+- installs dependencies
+
+- installs Playwright browsers
+
+- runs tests
+
+- generates reports
+
+- stores artifacts such as test results/screenshots
+
+14. Best Practices
+
+Ensure the framework follows these best practices:
+
+- DRY principle
+
+- single responsibility principle
+
+- reusable page methods
+
+- no hardcoded waits unless unavoidable
+
+- proper assertions
+
+- readable naming conventions
+
+- scalable architecture
+
+- low maintenance design
+
+15. Deliverables
+
+Generate complete code for:
+
+- package.json
+
+- tsconfig.json
+
+- playwright.config.ts
+
+- base page
+
+- sample page objects
+
+- sample fixtures
+
+- sample tests
+
+- utilities
+
+- sample test data
+
+- .env example
+
+- GitHub Actions workflow
+
+- README with setup and run instructions
+
+16. README Instructions
+
+README should include:
+
+- project overview
+
+- installation steps
+
+- how to run tests
+
+- how to run specific tests
+
+- how to run in headed mode
+
+- how to run against a specific browser
+
+- how to generate Allure report
+
+- framework folder explanation
+
+17. Coding Standards
+
+Use:
+
+- clean TypeScript syntax
+
+- async/await properly
+
+- comments only where necessary
+
+- strongly typed methods where possible
+
+- maintainable class and method names
+
+18. Output Format
+
+Provide the output as a complete framework with code blocks for each file.
+
+Start with folder structure, then provide each file one by one with file names.
+
+Ensure the code is consistent and ready to copy into a real project.
+
+19. Application Under Test
+
+Use a generic sample application such as:
+
+- a login page
+
+- a dashboard/home page
+
+- a search page
+
+You may assume a demo site structure if needed, but keep the framework reusable for any real project.
+
+
+
+20. Extra Enhancements
+
+If possible, also include:
+
+- reusable API helper structure for future API integration
+
+- storage state login support
+
+- test annotations/tags
+
+- retry strategy guidance
+
+- optional parallel execution recommendations
+
+
+
+Important:
+
+Do not create a basic demo-only framework.
+
+Create a real-world, interview-ready, enterprise-style Playwright TypeScript POM framework with professional structure and best practices.
